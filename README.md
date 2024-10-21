@@ -191,4 +191,23 @@ where in this case, the `output` variable will contain whatever message was retu
 
 ## Let's actually do something now
 
-So now you know a couple of Rust basics. That's great. Maybe we actually do something that is useful now.
+So now you know a couple of Rust basics. That's great. Maybe we actually do something that is useful now. We're going to build the popular `tree` Linux command.
+
+### Using Cargo
+
+Cargo is Rust's package manager. It is super powerful and if you're ever building anything in Rust, you're going to need to use it. Let's make a new Rust project with `cargo new list-files`.
+
+Now if we open that folder up, we will see a `src/` folder with a `main.rs`. We can run the project with `cargo run`.
+
+### Actually writing code
+
+I want to make a tree view, similar to this:
+```
+list-files/
+├── Cargo.toml
+└── src
+    └── main.rs
+```
+
+Rust has some standard libraries that allow us to access the file system, let's use them to our advantage. 
+
