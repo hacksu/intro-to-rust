@@ -209,5 +209,4 @@ list-files/
     └── main.rs
 ```
 
-Rust has some standard libraries that allow us to access the file system, let's use them to our advantage. 
-
+The lesson will continue with us building the command in `list-files/src/main.rs`. The file is heavily commented and I will explain all the code as I write it. 
