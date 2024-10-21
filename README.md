@@ -111,3 +111,84 @@ let output = match boolean {
 // output will be true
 ```
 
+### Nullability
+
+In a lot of programming languages, we have the `null` or `nil` (Lua moment) or `nullptr` which allows us to assign a value to null.
+
+Rust *does not* have this which is really great for us. Let's take the example of some C++ code:
+```C++
+char* val = nullptr;
+
+// imagine some crazy code
+
+std::cout << *val;
+```
+
+WOW! We just dereferenced null and caused all sorts of problems. Since we can't do that in Rust, we same ourselves from that problem.
+
+If we wanted to do a "null" value in Rust, it would look like this:
+```Rust
+let mut val: Option<u64> = None; // value is "null"
+
+// this will never happen
+if let Some(number) = val {
+    // ..?
+}
+
+val = Some(10);
+
+// this will happen!
+if let Some(number) = val {
+    println!("the number is {}", number);
+}
+
+val = None;
+
+// we can even do this
+match val {
+    Some(number) => println!("the number is {}", number),
+    None => println!("rip, there is no number."),
+}
+```
+
+Wonderful. No [NullPointerExceptions](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/NullPointerException.html)!
+
+### Error handling
+
+Rust provides us with a great `Result` datatype for error handling. Let's write a function that could throw an error:
+```Rust
+fn do_some_work(fail: bool) -> Result<String, String> {
+    
+    if fail {
+        return Err(String::from("not yay!"));
+    }
+
+    Ok(String::from("yay!"))
+}
+```
+and then our main function:
+```Rust
+let passed = do_some_work(false);
+if let Ok(message) = passed {
+    println!("{}", message)
+}
+
+let failed = do_some_work(true);
+if let Err(message) = failed {
+    println!("{}", message)
+}
+```
+
+Seems silly here, but it is super powerful in practice. We could even unwrap a Result with `match`:
+```Rust
+let output = match do_some_work(true) {
+    Ok(message) => message,
+    Err(message) => message
+};
+println!("{}", output);
+```
+where in this case, the `output` variable will contain whatever message was returned, whether it be an `Error` or `Ok`.
+
+## Let's actually do something now
+
+So now you know a couple of Rust basics. That's great. Maybe we actually do something that is useful now.
