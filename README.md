@@ -2,6 +2,18 @@
 
 Let's learn some cool thing about Rust!
 
+## Table of Contents
+- [Installing rustup](#installing-rustup)
+- [Updating rustup](#updating-rustup)
+- [Digging into Rust](#digging-into-rust)
+    + [Hello world](#hello-world)
+    + [Interesting language features](#interesting-language-features)
+    + [Nullability](#nullability)
+    + [Error handling](#error-handling)
+- [Let's actually do something now](#let-s-actually-do-something-now)
+    + [Using Cargo](#using-cargo)
+    + [Actually writing code](#actually-writing-code)
+
 ## Installing rustup
 
 First, we are going to need to install some tools (specifically `rustup`) so we can get the latest version of Rust, as well as build our project.
