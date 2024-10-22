@@ -123,6 +123,44 @@ let output = match boolean {
 // output will be true
 ```
 
+### Borrows
+
+We actually have no concept of a pointer in Rust. Well... we kind of do,
+it's just a little different. In Rust, we don't create pointers, we borrow
+the ownership of the dynamic memory when we want to access it. This is where
+our concept of safety comes from. We never leave a pointer dangling or have 
+dynamic memory allocated for longer than it needs to.
+
+Let's see an example of a borrow. We have a function:
+```Rust
+fn print_vec(vec: &Vec<u8>){
+    for i in vec {
+        println!("{}", i);
+    }
+}
+
+```
+And then we use it in this code.
+```Rust
+let nums: Vec<u8> = Vec::new(); 
+print_vec(nums); // no borrow???
+
+let size = nums.len(); // uhh oh, this won't work
+```
+
+In the code above, we don't borrow ownership of "nums" when we pass it to our
+function that prints the vector, so the ownership is moved into that scope and
+then destroyed at the end of the function. This means once the code continues,
+we cannot access the length of the vector because it no longer exists.
+
+The proper code would look like:
+```Rust
+let nums: Vec<u8> = Vec::new(); 
+print_vec(&nums); // no borrow???
+
+let size = nums.len(); // uhh oh, this won't work
+```
+
 ### Nullability
 
 In a lot of programming languages, we have the `null` or `nil` (Lua moment) or `nullptr` which allows us to assign a value to null.
