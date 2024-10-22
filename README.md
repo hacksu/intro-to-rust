@@ -156,9 +156,9 @@ we cannot access the length of the vector because it no longer exists.
 The proper code would look like:
 ```Rust
 let nums: Vec<u8> = Vec::new(); 
-print_vec(&nums); // no borrow???
+print_vec(&nums); // borrow!
 
-let size = nums.len(); // uhh oh, this won't work
+let size = nums.len(); // yay!
 ```
 
 ### Nullability
